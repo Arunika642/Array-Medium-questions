@@ -1,0 +1,54 @@
+Brute Method:
+sort the array using any sorting algo supposedly a merge sort. which takes a TC of O(NlogN) and the SC is O(N)
+
+Better Method:
+Take three counters as count0,count1 and count2
+Run a loop and and count how many times all the values occur
+And then Run 3 loops to set the values manually as O,1 and 2
+loop 1 from i-->count0
+loop 2 from i-->count0+count1
+loop 3 from i-->n-1
+This method takes a time complexity of O(N)- loop 1 to count all values and O(N) to set all values
+Total Time Complexity: O(2N) and SC: O(1)
+
+Optimal solution:
+/* In this question we are using Dutch National flag algorithm
+it says:
+0 to low-1 contains - all 0
+low to mid-1 contains - all 1
+mid to high contains - unsorted elements
+high+1 to n-1 contains - all 2
+So we need to solve the unsorted section: whenever nums[mid] is 0 then swap it with
+low and shift low-1 by doing low++ and mid++
+similarly do a mid++ if encounter a 1
+and swap nums[mid] with nums[high] and shrink it to high--
+
+this algo takes a TC of O(N) and SC of O(1)*/
+
+
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low=0,mid=0,high=nums.size()-1;
+        while(mid<=high)
+        {
+            if(nums[mid]==0)
+            {
+                swap(nums[mid],nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1)
+            {
+                mid++;
+            }
+            else //nums[mid]==2
+            {
+                swap(nums[mid],nums[high]);
+                high--;
+
+            }
+        }
+    }
+};
