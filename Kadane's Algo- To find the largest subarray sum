@@ -1,0 +1,34 @@
+Brute: O(N^3) 
+3 loops: i=0 to n-1
+j=i to n-1
+k=i to j
+then find max sum: maxi=max(maxi,sum)
+
+
+Better: O(N^2)
+2 loops i=0 to n-1
+sum =0;
+j=i to n-1
+then finding max sum;
+
+
+Optimal solution- O(N) and O(1) SC
+/*using Kadane's algorithm - it is used to find find the largest subarray sum
+sum =0 and maxi = a[o]
+if(sum<0) then don't take that element and set the sum to 0 else add it to sum 
+and then compare it to the maxi to get the largest sum
+this algo takes O(N) time complexity and a SC of a O(1)*/
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum=0,maxi=nums[0];
+        for(auto it:nums)
+        {
+            sum+=it;
+            maxi= max(maxi,sum);
+            if(sum<0) sum=0;
+        }
+        return maxi;
+    }
+};
