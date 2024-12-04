@@ -1,0 +1,30 @@
+Brute force:
+take all positives in one array
+all negatives in other
+RUn s loop till n/2 and at even index put arr[2*i] = pos[i] and at arr[2*i+1] = neg[i];
+TC= O(N)+O(N) and SC=O(N)
+
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> positives;
+        vector<int> negatives;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]>0)
+            {
+                positives.push_back(nums[i]);
+            }
+            else
+            {
+                negatives.push_back(nums[i]);
+            }
+        }
+        for(int i=0;i<nums.size()/2;i++)
+        {
+            nums[2*i]= positives[i];
+            nums[2*i+1]=negatives[i];
+        }
+        return nums;
+    }
+};
