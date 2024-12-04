@@ -1,0 +1,66 @@
+/*Loop 1- we segregate positives and negatives- O(N)
+IF positives are > negatives
+Loop2- from i=0 to neg.size()--suppose array size = 4 so loop till n/2
+loop 2 arranges all +ves and -ves alternatively
+index for leftovers will start from where the last element was put it will n or neg.size()*2
+Loop 3 to put the leftovers starting from neg.size() which is leftover starting index of +ves till the 
+no. of elements in +ves
+The next else condition checks for condition if pos==neg or pos<neg
+The else part does same as above loops
+So total TC- O(N)+min(pos+neg)+O(leftovers)
+==> O(N) + O(N)-->in worst case where either all no. are +ves or all are -ves*/
+
+
+
+
+
+vector<int> alternateNumbers(vector<int> &a) {
+  // Write your code here.
+  vector<int> pos,neg;
+  
+  //Loop1:
+  for(int i=0;i<a.size();i++)
+  {
+      if(a[i]<0)
+      {
+          neg.push_back(a[i]);
+      }
+      else
+      {
+          pos.push_back(a[i]);
+      }
+  }
+
+  //Condition1- if(pos.size()>neg.size)--number of positives are greater than negatives in the array
+  if(pos.size()>neg.size())
+  {
+      //Loop 2
+      for(int i=0;i<neg.size();i++)
+      {
+          a[2*i+1]=neg[i];
+          a[2*i]=pos[i];
+      }
+      int index = neg.size()*2;
+      //Loop 3
+      for(int i=neg.size();i<pos.size();i++)
+      {
+          a[index]=pos[i];
+          index++;
+      }
+  }
+  else{
+      for(int i=0;i<pos.size();i++)
+      {
+          a[2*i+1]=neg[i];
+          a[2*i]=pos[i];
+      }
+      int index = pos.size()*2;
+      //Loop 3
+      for(int i=pos.size();i<neg.size();i++)
+      {
+          a[index]=neg[i];
+          index++;
+      }
+  }
+  return a;
+}
