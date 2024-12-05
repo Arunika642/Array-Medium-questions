@@ -1,0 +1,40 @@
+/*Loop 1: finds the first break point where nums[i]<nums[i+1] as originally the array was in descending order.
+Once found mark that index's position.
+If not found then just return the reversed array.
+Loop 2- finds the number from reverse which is greater than the breakpoint number
+
+Step 1- find the breakpoint
+Step 2- find a number slightly greater than the breakpoint index
+Step 3- Swap both
+Step 4- reverse the leftover array after the swapping from index+1 till end
+TC-O(3N)
+SC-O(1) if modifying is considered then O(N)*/
+
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int index = -1,n=nums.size();
+        for(int i=n-2;i>=0;i--)
+        {
+            if(nums[i]<nums[i+1])
+            {
+                index=i;
+                break;
+            }
+        }
+        if(index==-1)
+        {
+            return reverse(nums.begin(),nums.end());
+        }
+        for(int i=n-1;i>index;i--)
+        {
+            if(nums[i]>nums[index])
+            {
+                swap(nums[i],nums[index]);
+                break;
+            }
+        }
+        return reverse(nums.begin()+index+1,nums.end());
+    }
+};
