@@ -1,0 +1,27 @@
+/*An element is a leader if its greatest than all the right most elements
+if from all the rightmost elements the checked element is > the max of all right elements 
+then it is the greatest
+TC- O(N) + O(NlogN)-->if sorted or O(N) if reverse function is used.
+SC-O(1) or O(N) for answer*/
+
+class Solution {
+    // Function to find the leaders in the array.
+  public:
+    vector<int> leaders(vector<int>& arr) {
+        // Code here
+        int n=arr.size();
+        vector<int> ans;
+        int maxi=INT_MIN;;
+        for(int i=n-1;i>=0;i--)
+        {
+            if(arr[i]>=maxi)
+            {
+                ans.push_back(arr[i]);
+            }
+            //keep track of right maxi
+            maxi= max(maxi,arr[i]);
+        }
+    reverse(ans.begin(),ans.end());
+    return ans;
+    }
+};
