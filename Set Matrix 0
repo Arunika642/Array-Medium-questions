@@ -35,3 +35,67 @@ public:
         }        
     }
 };
+
+
+
+
+#include <bits/stdc++.h> 
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	// Row:matrix[i][0], COl:[0][j]
+	int col0=1;
+	
+	//checking for 0 and setting in tester row and col
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			if(matrix[i][j]==0)
+			{
+				//for col we need to check if it is for col0 or not
+				if(j!=0)
+				{
+					matrix[0][j]=0;
+				}
+				else
+				{
+					col0=0;  //if it is for 0 then update the additional column
+				}
+				//setting tester row-row keeps on changing and col is constant
+				matrix[i][0]=0;
+			}
+		}
+	}
+
+	//Now updating the matrix according to what we have set above
+
+	//starting from inside matrix and ignoring the tester row and col
+	for(int i=1;i<n;i++)
+	{
+		for(int j=1;j<m;j++)
+		{
+			if(matrix[i][j]!=0)   //if it is already 0 then no need to convert
+			{
+				if(matrix[i][0]==0 || matrix[0][j]==0)
+				{
+					matrix[i][j]=0;
+				}
+			}
+		}
+	}
+	if(matrix[0][0]==0)  //if first element of row is set to 0 then all the first columns will be 0
+	{
+		for(int j=0;j<m;j++)
+		{
+			matrix[0][j]=0;
+		}
+	}
+	if(col0==0) //if col0(additional)col is 0 then all elements of first row will be 0
+	{
+		for(int i=0;i<n;i++)
+		{
+			matrix[i][0]=0;
+		}
+	}
+
+	return matrix;
+}
