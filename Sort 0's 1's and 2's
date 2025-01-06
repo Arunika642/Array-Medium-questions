@@ -1,3 +1,4 @@
+
 Brute Method:
 sort the array using any sorting algo supposedly a merge sort. which takes a TC of O(NlogN) and the SC is O(N)
 
