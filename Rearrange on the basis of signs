@@ -1,4 +1,4 @@
-Brute force-
+Brute force
 take all positives in one array
 all negatives in other
 RUn s loop till n/2 and at even index put arr[2*i] = pos[i] and at arr[2*i+1] = neg[i];
