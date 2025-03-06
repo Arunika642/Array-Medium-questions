@@ -1,3 +1,4 @@
+
 Brute:
 //THis approach takes O(n^2) TC   
     bool ls(vector<int>a,int x)
