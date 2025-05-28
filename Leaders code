@@ -1,4 +1,3 @@
-
 /*An element is a leader if its greatest than all the right most elements
 if from all the rightmost elements the checked element is > the max of all right elements 
 then it is the greatest
